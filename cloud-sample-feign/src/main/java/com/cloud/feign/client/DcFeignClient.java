@@ -1,6 +1,5 @@
 package com.cloud.feign.client;
 
-import com.cloud.feign.client.configuration.DcClientConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * configuration配置完全控制每一个FeignClient
  * 的私有配置
  */
-@FeignClient(name = "sample-hystrix",fallbackFactory = DcFeignClientFallbackFactory.class,configuration = DcClientConfiguration.class)
+@FeignClient(name = "sample-hystrix",fallbackFactory = DcFeignClientFallbackFactory.class)
 public interface DcFeignClient {
 
     @GetMapping("/dc")
