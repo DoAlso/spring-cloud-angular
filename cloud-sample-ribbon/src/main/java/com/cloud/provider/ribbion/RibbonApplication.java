@@ -1,10 +1,8 @@
-package com.cloud.hystrix.ribbion;
+package com.cloud.provider.ribbion;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
-import org.springframework.cloud.netflix.hystrix.EnableHystrix;
-import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.client.RestTemplate;
 
@@ -13,10 +11,8 @@ import org.springframework.web.client.RestTemplate;
  * @author doalso
  * Hystrix具备了服务降级、服务熔断、线程隔离、请求缓存、请求合并以及服务监控等强大功能
  */
-@EnableHystrix
-@EnableHystrixDashboard
 @SpringCloudApplication
-public class HystrixRibbionApplication {
+public class RibbonApplication {
 
     @Bean
     @LoadBalanced
@@ -25,6 +21,6 @@ public class HystrixRibbionApplication {
     }
 
     public static void main( String[] args ) {
-        SpringApplication.run(HystrixRibbionApplication.class, args);
+        SpringApplication.run(RibbonApplication.class, args);
     }
 }

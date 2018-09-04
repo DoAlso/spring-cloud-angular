@@ -1,4 +1,4 @@
-package com.cloud.hystrix.ribbion.client;
+package com.cloud.provider.ribbion.client;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;

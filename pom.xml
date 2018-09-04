@@ -15,7 +15,8 @@
 		<module>cloud-sample-hystrix</module>
 		<module>cloud-sample-ribbon-hystrix</module>
 		<module>cloud-sample-feign</module>
-	</modules>
+        <module>cloud-sample-hystrixdashboard</module>
+    </modules>
 	<packaging>pom</packaging>
 
 	<name>spring-cloud-angular</name>

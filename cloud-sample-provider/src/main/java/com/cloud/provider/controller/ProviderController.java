@@ -1,4 +1,4 @@
-package com.cloud.hystrix.controller;
+package com.cloud.provider.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;

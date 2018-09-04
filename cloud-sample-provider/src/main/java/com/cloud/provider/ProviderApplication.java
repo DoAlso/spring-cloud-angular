@@ -1,11 +1,14 @@
-package com.cloud.hystrix;
+package com.cloud.provider;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 
+/**
+ * @author doalso
+ */
 @SpringCloudApplication
-public class HystrixApplication {
+public class ProviderApplication {
     public static void main( String[] args ) {
-        SpringApplication.run(HystrixApplication.class, args);
+        SpringApplication.run(ProviderApplication.class, args);
     }
 }
