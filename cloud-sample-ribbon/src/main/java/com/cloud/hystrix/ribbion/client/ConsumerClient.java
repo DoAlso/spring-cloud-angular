@@ -16,7 +16,7 @@ public class ConsumerClient {
 
     @HystrixCommand(fallbackMethod = "fallback")
     public String consumer() {
-        return restTemplate.getForObject("http://sample-hystrix/dc", String.class);
+        return restTemplate.getForObject("http://sample-provider/dc", String.class);
     }
 
     public String fallback() {
