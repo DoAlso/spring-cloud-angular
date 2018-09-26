@@ -14,7 +14,8 @@
         <module>cloud-sample-stream</module>
 		<module>cloud-sample-feign</module>
         <module>cloud-sample-hystrixdashboard</module>
-    </modules>
+		<module>tx-rabbitmq</module>
+	</modules>
 	<packaging>pom</packaging>
 
 	<name>spring-cloud-angular</name>
