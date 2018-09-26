@@ -12,8 +12,6 @@
         <module>cloud-sample-security</module>
         <module>cloud-sample-java</module>
         <module>cloud-sample-stream</module>
-		<module>cloud-sample-hystrix</module>
-		<module>cloud-sample-ribbon-hystrix</module>
 		<module>cloud-sample-feign</module>
         <module>cloud-sample-hystrixdashboard</module>
     </modules>
