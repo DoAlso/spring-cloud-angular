@@ -5,6 +5,9 @@ import com.github.rholder.retry.RetryerBuilder;
 import com.github.rholder.retry.StopStrategies;
 import com.github.rholder.retry.WaitStrategies;
 import com.google.common.base.Predicates;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.amqp.rabbit.support.CorrelationData;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Callable;
@@ -19,6 +22,8 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class MessageRetry {
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
     /**
      * 重发消息
      */
@@ -29,7 +34,9 @@ public class MessageRetry {
             @Override
             public Boolean call() throws Exception {
                 System.out.println("重新发送.....");
-                return false;
+                rabbitTemplate.convertAndSend("topicExchange","topic.dispatch1", "Hello ,World");
+                System.out.println(".....END.....");
+                return true;
             }
         }
 
