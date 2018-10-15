@@ -1,9 +1,7 @@
 package com.cloud.provider.util;
 
-import com.github.rholder.retry.Retryer;
-import com.github.rholder.retry.RetryerBuilder;
-import com.github.rholder.retry.StopStrategies;
-import com.github.rholder.retry.WaitStrategies;
+import com.cloud.provider.callback.TxConfirmCallback;
+import com.github.rholder.retry.*;
 import com.google.common.base.Predicates;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
@@ -34,9 +32,12 @@ public class MessageRetry {
             @Override
             public Boolean call() throws Exception {
                 System.out.println("重新发送.....");
+                if(TxConfirmCallback.SUCCESS_SEND){
+                    return true;
+                }
                 rabbitTemplate.convertAndSend("topicExchange","topic.dispatch1", "Hello ,World");
                 System.out.println(".....END.....");
-                return true;
+                return false;
             }
         }
 
@@ -48,14 +49,15 @@ public class MessageRetry {
                 //重试策略  100ms*2^n 最多10s
                 .withWaitStrategy(WaitStrategies.exponentialWait(500,
                        10, TimeUnit.SECONDS))
-                .withStopStrategy(StopStrategies.neverStop())
+                .withStopStrategy(StopStrategies.stopAfterAttempt(2))
+                .withRetryListener(new TxRetryListener<>())
                 .build();
 
         ReSendThread reSendThread = new ReSendThread();
         try {
             retryer.call(reSendThread);
             //未发送成功，入死信队列
-            if(true) {
+            if(!TxConfirmCallback.SUCCESS_SEND) {
                 //消息入死信队列
                 System.out.println("消息进入死信");
             }

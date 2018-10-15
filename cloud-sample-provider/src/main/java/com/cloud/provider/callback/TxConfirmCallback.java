@@ -22,6 +22,8 @@ public class TxConfirmCallback implements RabbitTemplate.ConfirmCallback {
     @Autowired
     private MessageRetry messageRetry;
 
+    public static boolean SUCCESS_SEND = false;
+
     @Autowired
     TxConfirmCallback(RabbitTemplate rabbitTemplate){
         rabbitTemplate.setMessageConverter(new Jackson2JsonMessageConverter());
@@ -32,6 +34,7 @@ public class TxConfirmCallback implements RabbitTemplate.ConfirmCallback {
     public void confirm(CorrelationData correlationData, boolean ack, String cause) {
         if (ack) {
             logger.debug("消息发送到exchange成功,id: {}", correlationData.getId());
+            SUCCESS_SEND = true;
         } else {
             logger.debug("消息发送到exchange失败,原因: {}", cause);
             messageRetry.reSendMsg();
