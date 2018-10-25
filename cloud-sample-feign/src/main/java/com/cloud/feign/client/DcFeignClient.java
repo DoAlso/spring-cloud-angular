@@ -1,6 +1,8 @@
 package com.cloud.feign.client;
 
+import feign.hystrix.FallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -9,9 +11,28 @@ import org.springframework.web.bind.annotation.GetMapping;
  * configuration配置完全控制每一个FeignClient
  * 的私有配置
  */
-@FeignClient(name = "sample-provider",fallbackFactory = DcFeignClientFallbackFactory.class)
+@FeignClient(name = "sample-provider",fallbackFactory = DcFeignClient.DcFeignClientFallback.class)
 public interface DcFeignClient {
 
     @GetMapping("/dc")
     String consumer();
+
+    @Component
+    class DcFeignClientFallback implements DcFeignClient {
+
+        @Override
+        public String consumer() {
+            return "Error";
+        }
+    }
+
+
+    @Component
+    class DcFeignClientFallbackFactory implements FallbackFactory<DcFeignClient> {
+
+        @Override
+        public DcFeignClient create(Throwable throwable) {
+            return () -> "hello fallback"+throwable.getMessage();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.cloud.provider;
 
-import com.cloud.provider.util.Sender;
+import com.cloud.provider.sender.RabbitSender;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class ProviderApplication implements ApplicationRunner {
 
     @Autowired
-    private Sender sender;
+    private RabbitSender sender;
 
     public static void main( String[] args ) {
         SpringApplication.run(ProviderApplication.class, args);

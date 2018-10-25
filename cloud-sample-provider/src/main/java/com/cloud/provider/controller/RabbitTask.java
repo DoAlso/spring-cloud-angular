@@ -1,7 +1,7 @@
 //package com.cloud.provider.controller;
 //
-//import com.cloud.provider.util.Sender;
-//import org.springframework.beans.abstractfactory.annotation.Autowired;
+//import com.cloud.provider.sender.Sender;
+//import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.scheduling.annotation.Scheduled;
 //import org.springframework.stereotype.Component;
 //
