@@ -8,3 +8,17 @@ spring:
       uri: ${SPRING_CONFIG_URI:http://localhost:8888}
       profile: default
       label: master
+    gateway:
+      routes:
+        - id: service_to_feign
+          uri: lb://sample-feign
+          predicates:
+            - Path=/api/**
+          filters:
+            - StripPrefix=1
+        - id: service_to_comb
+          uri: http://192.168.1.29:8110
+          predicates:
+            - Path=/comb/**
+          filters:
+            - StripPrefix=1
