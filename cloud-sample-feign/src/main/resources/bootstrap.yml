@@ -1,10 +1,8 @@
-server:
-  port: 8668
 spring:
   application:
     name: sample-feign
   cloud:
     config:
-      uri: ${SPRING_CONFIG_URI:http://localhost:8888}
-      profile: default
+      uri: ${SPRING_CONFIG_URI:http://localhost:8864}
+      profile: dev
       label: master
