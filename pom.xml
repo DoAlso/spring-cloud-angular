@@ -13,6 +13,8 @@
         <module>cloud-sample-java</module>
         <module>cloud-sample-stream</module>
 		<module>cloud-sample-feign</module>
+		<module>cloud-sample-ribbon</module>
+		<module>cloud-sample-provider</module>
         <module>cloud-sample-hystrixdashboard</module>
 		<module>cloud-sample-gateway</module>
 	</modules>
